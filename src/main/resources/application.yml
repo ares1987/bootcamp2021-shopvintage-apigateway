@@ -1,0 +1,23 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: bidders
+          uri: lb://BIDDERS
+          predicates:
+            - Path=/bidders/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://172.17.0.3:8761/eureka
+
+  instance:
+    hostname: estiv
